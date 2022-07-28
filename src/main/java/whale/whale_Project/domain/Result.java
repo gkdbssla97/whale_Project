@@ -21,7 +21,7 @@ public class Result {
 
     @OneToOne(fetch = FetchType.LAZY) //(cascade = CascadeType.ALL)
     @JoinColumn(name = "animal_id")
-    private Animal animal;
+    private Whale whale;
 
     private LocalDateTime testDate;
 
