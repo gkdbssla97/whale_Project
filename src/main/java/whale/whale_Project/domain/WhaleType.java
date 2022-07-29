@@ -1,5 +1,5 @@
 package whale.whale_Project.domain;
 
 public enum WhaleType {
-    DOLPHIN, WHITE_WHALE
+    DOLPHIN, WHITE_WHALE, etc
 }

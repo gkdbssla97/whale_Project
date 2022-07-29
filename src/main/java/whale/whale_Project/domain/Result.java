@@ -19,6 +19,9 @@ public class Result {
     @JoinColumn(name = "member_id")
     private Member member; //테스트 회원
 
+    @Enumerated(EnumType.STRING)
+    private MemberStatus memberStatus;
+
     @OneToOne(fetch = FetchType.LAZY) //(cascade = CascadeType.ALL)
     @JoinColumn(name = "animal_id")
     private Whale whale;
