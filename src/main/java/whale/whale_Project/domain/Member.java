@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +17,15 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    //회원 Account / Pwd
-    private String account;
-    private String pwd;
-
-    @NotEmpty
     private String name;
+    private String account; //회원 ACCOUNT
+    private String pwd; //회원 PWD
 
     @Embedded
     private Address address;
 
     private String email;
+    private LocalDateTime localDateTime;
 
     @OneToMany(mappedBy = "member")
     private List<Result> results = new ArrayList<>();

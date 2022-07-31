@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 public class ResultSearch {
 
     private String memberName;
-    private MbtiMappingWithWhale mbtiType;
+    private MbtiMappingWithWhale mbti;
+    private MbtiMappingWithWhale whaleType;
 
 }

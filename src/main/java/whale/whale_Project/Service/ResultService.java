@@ -25,7 +25,7 @@ public class ResultService {
         //엔티티 조회
         Member member = memberRepository.findOne(memberId);
 
-        //MBTI-Whale 생성
+        //<MBTI-Whale> 생성
         Whale resultWhale = Whale.createMbtiWithWhale(whale.getMbtiWhaleMapping());
 
         //결과지 생성
@@ -36,9 +36,18 @@ public class ResultService {
 
         return result.getId();
     }
-    /** 결과(고래종류별로?) 검색
-    public Result findResults(ResultSearch resultSearch) {
-        return resultRepository.findAll(resultSearch);
+    //결과(고래종류별로?) 검색
+    public List<Result> findResults(ResultSearch resultSearch) {
+        return resultRepository.findAllByWhale(resultSearch);
     }
-    **/
+
+
+    @Transactional
+    public void updateResult(Long resultId, Whale whale) {
+        Result result = resultRepository.findOne(resultId);
+        result.setWhale(whale);
+
+        //회원일 경우-> 테스트 결과지 회원상태로 수정 후 공유가능?
+        //result.setMemberStatus(MemberStatus.MEMBER);
+    }
 }

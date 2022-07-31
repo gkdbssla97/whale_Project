@@ -33,13 +33,13 @@ public class ResultRepository {
         return em.find(Result.class, id);
     }
 
-    public List<Result> findAll(ResultSearch resultSearch) {
+    public List<Result> findAllByWhale(ResultSearch resultSearch) {
         //language = JPAQL
-        String jpql = "select r From Result r join r.member m";
+        String jpql = "select r From Result r join r.whale w";
         boolean isFirstCondition = true;
 
-        //결과 MBTI 종류 검색
-        if (resultSearch.getMbtiType() != null) {
+        //결과 고래 종류별 검색
+        if (resultSearch.getWhaleType() != null) {
             if (isFirstCondition) {
                 jpql += "where";
                 isFirstCondition = false;
@@ -48,7 +48,9 @@ public class ResultRepository {
             }
             jpql += "r.type =: type";
         }
-        //회원 이름 검색
+        /**
+         * (현재 미구현 파트)
+        //회원 이름별 검색
         if (StringUtils.hasText(resultSearch.getMemberName())) {
             if (isFirstCondition) {
                 jpql += "where";
@@ -56,17 +58,18 @@ public class ResultRepository {
             } else {
                 jpql += "and";
             }
-            jpql += "m.name like =: name";
-        }
+            jpql += "w.type like =: type";
+        }**/
 
         TypedQuery<Result> query = em.createQuery(jpql, Result.class)
                 .setMaxResults(10);
-        if (resultSearch.getMbtiType() != null) {
-            query = query.setParameter("type", resultSearch.getMbtiType());
+        if (resultSearch.getWhaleType() != null) {
+            query = query.setParameter("type", resultSearch.getWhaleType());
         }
+        /**
         if (StringUtils.hasText(resultSearch.getMemberName())) {
             query = query.setParameter("name", resultSearch.getMemberName());
-        }
+        }**/
         return query.getResultList();
     }
 }

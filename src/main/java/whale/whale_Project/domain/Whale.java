@@ -24,7 +24,6 @@ public class Whale {
     private MbtiMappingWithWhale mbtiWhaleMapping; //ENUM [16Types]
     private String whaleType;
 
-
     //==생성 메서드==//
     public static Whale createMbtiWithWhale(MbtiMappingWithWhale mbtiMappingWithWhale) {
         Whale whale = new Whale();
