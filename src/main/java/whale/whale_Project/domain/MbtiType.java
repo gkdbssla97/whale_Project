@@ -1,6 +1,6 @@
 package whale.whale_Project.domain;
 
-public enum MbtiStatus {
+public enum MbtiType {
     ISTJ, ISFJ,	INFJ, INTJ,
     ISTP, ISFP, INFP, INTP,
     ESTP, ESFP, ENFP, ENTP,

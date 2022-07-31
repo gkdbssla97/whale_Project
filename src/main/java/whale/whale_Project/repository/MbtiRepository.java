@@ -8,8 +8,11 @@ import javax.persistence.PersistenceContext;
 
 @Repository
 @RequiredArgsConstructor
-public class WhaleRepository {
+public class MbtiRepository {
 
     @PersistenceContext
     private EntityManager em;
+
+
+
 }

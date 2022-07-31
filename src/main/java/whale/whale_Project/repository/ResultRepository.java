@@ -1,11 +1,15 @@
 package whale.whale_Project.repository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 import whale.whale_Project.domain.Result;
+import whale.whale_Project.domain.ResultSearch;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -27,8 +31,40 @@ public class ResultRepository {
         return em.find(Result.class, id);
     }
 
-    public List<Result> findAll() {
-        return em.createQuery("select r from Result r", Result.class)
-                .getResultList();
+    public List<Result> findAll(ResultSearch resultSearch) {
+        //language = JPAQL
+        String jpql = "select r From Result r join r.member m";
+        boolean isFirstCondition = true;
+
+        //결과 MBTI 종류 검색
+        if (resultSearch.getMbtiType() != null) {
+            if (isFirstCondition) {
+                jpql += "where";
+                isFirstCondition = false;
+            } else {
+                jpql += "and";
+            }
+            jpql += "r.type =: type";
+        }
+        //회원 이름 검색
+        if (StringUtils.hasText(resultSearch.getMemberName())) {
+            if (isFirstCondition) {
+                jpql += "where";
+                isFirstCondition = false;
+            } else {
+                jpql += "and";
+            }
+            jpql += "m.name like =: name";
+        }
+
+        TypedQuery<Result> query = em.createQuery(jpql, Result.class)
+                .setMaxResults(10);
+        if (resultSearch.getMbtiType() != null) {
+            query = query.setParameter("type", resultSearch.getMbtiType());
+        }
+        if (StringUtils.hasText(resultSearch.getMemberName())) {
+            query = query.setParameter("name", resultSearch.getMemberName());
+        }
+        return query.getResultList();
     }
 }
