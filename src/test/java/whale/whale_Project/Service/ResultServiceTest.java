@@ -1,7 +1,51 @@
 package whale.whale_Project.Service;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+import whale.whale_Project.domain.*;
+import whale.whale_Project.repository.ResultRepository;
+
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class ResultServiceTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional
+public class ResultServiceTest {
 
+    @Autowired ResultService resultService;
+    @Autowired ResultRepository resultRepository;
+    @Autowired MemberService memberService;
+
+    @Test
+    @Rollback(false)
+    public void testResult() {
+        Member member = new Member();
+        member.setName("하윤");
+        member.setAddress(new Address("서울시","강남구","일원1동"));
+
+        Long memberId = memberService.join(member);
+
+        Whale whale = new Whale();
+
+        whale.setMbtiType(MbtiType.ENFJ);
+        whale.setWhaleType(WhaleType.WHITE_WHALE);
+
+        Long testId = resultService.whaleTest(memberId, whale);
+        // 결과창을 통해 어떻게 회원 여부를 판단하지? -> ResultService
+        //MemberStatus memberStatus = new MemberStatus();
+
+        Result result = resultRepository.findOne(testId);
+
+        assertEquals("하윤", result.getMember().getName());
+        assertEquals(MbtiType.ENFJ, result.getWhale().getMbtiType());
+        assertEquals(WhaleType.WHITE_WHALE, result.getWhale().getWhaleType());
+
+    }
 }

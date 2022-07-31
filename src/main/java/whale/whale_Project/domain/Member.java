@@ -16,6 +16,10 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    //회원 Account / Pwd
+    private String account;
+    private String pwd;
+
     @NotEmpty
     private String name;
 

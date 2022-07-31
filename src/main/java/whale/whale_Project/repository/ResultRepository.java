@@ -16,8 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResultRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
     public void save(Result result) {
         if (result.getId() == null) {

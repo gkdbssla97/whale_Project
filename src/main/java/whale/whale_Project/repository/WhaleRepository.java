@@ -10,6 +10,5 @@ import javax.persistence.PersistenceContext;
 @RequiredArgsConstructor
 public class WhaleRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 }
