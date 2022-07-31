@@ -1,10 +1,14 @@
 package whale.whale_Project.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Entity
 @Table(name = "results")
@@ -23,6 +27,7 @@ public class Result {
     @JoinColumn(name = "whale_id")
     private Whale whale;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime testDate; //테스트시간
 
     @Enumerated(EnumType.STRING)

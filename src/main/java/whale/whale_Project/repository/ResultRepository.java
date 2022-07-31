@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
+import whale.whale_Project.domain.MemberStatus;
 import whale.whale_Project.domain.Result;
 import whale.whale_Project.domain.ResultSearch;
 
@@ -20,6 +21,8 @@ public class ResultRepository {
 
     public void save(Result result) {
         if (result.getId() == null) {
+            //회원/비회원 구분 어떻게?
+            result.setMemberStatus(MemberStatus.MEMBER);
             em.persist(result);
         } else {
             em.merge(result);

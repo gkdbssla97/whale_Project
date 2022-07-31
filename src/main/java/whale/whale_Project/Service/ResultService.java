@@ -25,8 +25,8 @@ public class ResultService {
         //엔티티 조회
         Member member = memberRepository.findOne(memberId);
 
-        //MBTI 생성
-        Whale resultWhale = Whale.createMbtiWithWhale(whale.getWhaleType(), whale.getMbtiType());
+        //MBTI-Whale 생성
+        Whale resultWhale = Whale.createMbtiWithWhale(whale.getMbtiWhaleMapping());
 
         //결과지 생성
         Result result = Result.createResult(member, resultWhale);
