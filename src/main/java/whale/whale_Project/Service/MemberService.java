@@ -53,9 +53,8 @@ public class MemberService {
     }
 
     @Transactional
-    public void updateMember(Long id, String name, String account, String pwd, Address address, String email) {
+    public void updateMember(Long id, String account, String pwd, Address address, String email) {
         Member member = memberRepository.findOne(id); //영속성 상태
-        member.setName(name);
         member.setAccount(account);
         member.setPwd(pwd);
         member.setAddress(address);

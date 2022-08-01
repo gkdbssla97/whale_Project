@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.HashMap;
 
 @Entity
 @Table(name = "results")
@@ -43,7 +44,6 @@ public class Result {
         whale.setResult(this);
     }
 
-    //==생성 메서드==//
     public static Result createResult(Member member, Whale whale) {
         Result result = new Result();
         result.setMember(member);

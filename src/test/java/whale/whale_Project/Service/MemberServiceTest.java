@@ -29,7 +29,7 @@ public class MemberServiceTest {
 
 
     @Test
-    @Rollback(false)
+    //@Rollback(false)
     public void testMember() {
 
         Member member = new Member();

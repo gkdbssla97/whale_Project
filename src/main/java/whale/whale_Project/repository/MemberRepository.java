@@ -19,11 +19,9 @@ public class MemberRepository {
         em.persist(member);
         return member.getId();
     }
-
     public Member findOne(Long id) {
         return em.find(Member.class, id);
     }
-
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)
                 .getResultList();

@@ -9,6 +9,8 @@ import whale.whale_Project.repository.ResultRepository;
 
 import java.util.List;
 
+import static whale.whale_Project.domain.Result.createResult;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -29,7 +31,7 @@ public class ResultService {
         Whale resultWhale = Whale.createMbtiWithWhale(whale.getMbtiWhaleMapping());
 
         //결과지 생성
-        Result result = Result.createResult(member, resultWhale);
+        Result result = createResult(member, resultWhale);
 
         //결과 저장
         resultRepository.save(result);
@@ -40,7 +42,6 @@ public class ResultService {
     public List<Result> findResults(ResultSearch resultSearch) {
         return resultRepository.findAllByWhale(resultSearch);
     }
-
 
     @Transactional
     public void updateResult(Long resultId, Whale whale) {

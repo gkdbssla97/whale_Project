@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 @Getter @Setter
@@ -33,8 +35,12 @@ public class Whale {
         return whale;
     }
     //==비즈니스 로직==//
-    public void addPoint(int point) {
-        this.totalPoint += point;
-    }
+    public HashMap<String, Integer> addPoint(Result result, WhaleCountList whaleCountList) {
 
+        String mbtiType = result.getWhale().getMbtiWhaleMapping().name();
+        Integer point = whaleCountList.whaleCountMap.get(mbtiType);
+        whaleCountList.whaleCountMap.put(mbtiType, point + 1);
+
+        return whaleCountList.whaleCountMap;
+    }
 }

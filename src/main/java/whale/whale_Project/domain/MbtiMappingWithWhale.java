@@ -13,7 +13,7 @@ public enum MbtiMappingWithWhale {
     INFP(WhaleType.WHALE6), INTP(WhaleType.WHALE7),
     ESTP(WhaleType.WHALE8), ESFP(WhaleType.WHALE9),
     ENFP(WhaleType.WHALE10), ENTP(WhaleType.WHALE11),
-    ESTJ(WhaleType.WHALE12), ESFJ(WhaleType.WHALE13),
+    ESTJ(WhaleType.벨루가), ESFJ(WhaleType.흰수염고래),
     ENFJ(WhaleType.돌고래), ENTJ(WhaleType.혹등고래);
 
     private final WhaleType whaleType;

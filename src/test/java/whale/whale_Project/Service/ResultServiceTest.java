@@ -23,8 +23,8 @@ public class ResultServiceTest {
     @Autowired ResultRepository resultRepository;
     @Autowired MemberService memberService;
 
-    @Test
-    @Rollback(false)
+    //@Test
+    //@Rollback(false)
     public void testResult() {
         Member member = new Member();
         member.setName("하윤");
@@ -35,8 +35,7 @@ public class ResultServiceTest {
 
         Long memberId = memberService.join(member);
 
-        Whale whale = new Whale();
-        whale.setMbtiWhaleMapping(MbtiMappingWithWhale.ENFJ);
+        Whale whale = Whale.createMbtiWithWhale(MbtiMappingWithWhale.ENFJ);
 
         Long testId = resultService.whaleTest(memberId, whale);
         // 결과창을 통해 어떻게 회원 여부를 판단하지? -> ResultService

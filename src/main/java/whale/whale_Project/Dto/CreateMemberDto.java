@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Data
-public class MemberDto {
+public class CreateMemberDto {
 
     @NotEmpty(message = "회원 이름은 필수입니다.")
     private String name;
@@ -28,15 +28,15 @@ public class MemberDto {
     //private List<MemberFileDto> fileList;
 
 
-    public MemberDto(String name, String email, Address address,
-                     String account, String pwd, Long creatorId,
-                     LocalDateTime createdDateTime) {
+    public CreateMemberDto(Long creatorId, String name, String email,
+                           Address address, String account, String pwd,
+                           LocalDateTime createdDateTime) {
+        this.creatorId = creatorId;
         this.name = name;
         this.email = email;
         this.address = address;
         this.account = account;
         this.pwd = pwd;
-        this.creatorId = creatorId;
         this.createdDateTime = createdDateTime;
     }
 }
